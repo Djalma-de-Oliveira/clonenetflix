@@ -54,7 +54,7 @@ export default{
 
             {
                 slug: 'documentary',
-                title: 'Documentário',
+                title: 'Documentários',
                 items: await basicFetch(`/discover/movie?with_genres=99&language=pt-BR&api_key=${API_KEY}`)
             },
         ]
