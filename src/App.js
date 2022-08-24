@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import './App.css'
+import Tmdb from './Tmdb'
+import Header from './components/Header'
 
-function App() {
+export default () => {
+  const [movvieList, setMovieList] = useState([]);
+  const [featureData, setFeatureData] = useState(null)
+  const [blackHeader, setBlackHeader] = useState(false)
+  
+  useEffect(() => {
+    const loadAll = async () => {
+      let list = await Tmdb.getHomeList();
+      console.log(list)
+      setMovieList(list)
+
+      let originals = list.filter(i => i.slug ==='originals')
+      let randomChosen = Math.floor(Math.random() * (originals[0].items.results.length-1))
+        let chosen = originals[0].items.results[randomChosen]
+        let chosenInfo = await Tmdb.getMovieInfo(chosen.id, 'tv')
+        console.log(chosenInfo)
+        setFeatureData(chosenInfo)
+      }
+        loadAll()
+   
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="page">
+        <Header black={blackHeader}
     </div>
-  );
+  )
 }
 
-export default App;
