@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Tmdb from './Tmdb'
 import './App.css'
-import MovieRow from './components/MovieRow'
-import FeaturedMovie from './components/FeaturedMovie'
+import FeaturedMovie from './components/FeatureMovie'
 import Header from './components/Header'
+import MovieRow from './components/MovieRow'
 
 export default () => {
 
@@ -11,7 +11,7 @@ export default () => {
   const [featuredData, setFeaturedData] = useState(null)
   const [blackHeader, setBlackHeader] = useState(false)
 
-  useEffect(() => { 
+  useEffect(() => {
     const loadAll = async () => {
       // Pegando a lista TOTAL
       let list = await Tmdb.getHomeList();
@@ -29,18 +29,13 @@ export default () => {
 
   useEffect(() => {
     const scrollListener = () => {
-      if (window.scrollY > 10) {
+      if (window.scrolly > 10) {
         setBlackHeader(true)
       } else {
         setBlackHeader(false)
       }
     }
-
     window.addEventListener('scroll', scrollListener)
-
-    return () => {
-      window.removeEventListener('scroll', scrollListener)
-    }
   }, [])
 
   return (
@@ -51,15 +46,13 @@ export default () => {
       {featuredData &&
         <FeaturedMovie item={featuredData} />
       }
-
-      <section className="lists">
-        {movieList.map((item, key)=>(
-            <MovieRow key={key} title={item.title} items={item.items} />
-        ))}
-      </section>
-      
+      <div className="lists">
+        {movieList.map((item.key) =>
+        <MovieRow key={key} title={item.title} items={item.items} />
+        )}
+      </div>
       <footer>
-        Feito por Denny Azevedo <br />
+        Feito por Djalma de Oliveira <br />
         Direitos de imagem para Netflix <br />
         Dados pegos do site Themoviedb.org
       </footer>
@@ -69,8 +62,7 @@ export default () => {
           <img src="https://media.wired.com/photos/592744d3f3e2356fd800bf00/master/w_2560%2Cc_limit/Netflix_LoadTime.gif" alt="Carregando" />
         </div>
       }
-      
     </div>
-  );
+  )
 }
 
