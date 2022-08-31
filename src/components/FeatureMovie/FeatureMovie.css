@@ -44,7 +44,7 @@
     margin-top: 15px;
     font-size: 20px;
     color: #999;
-    max-width: 40%;
+    max-width: 48%;
 }
 
 .featured--buttons {
@@ -103,7 +103,7 @@
         margin-right: 30px;
     }
 
-    .featured--watchbutton,
+    .featured--,
     .featured--mylistbutton {
         font-size: 16px;
     }
